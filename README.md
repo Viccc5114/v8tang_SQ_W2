@@ -40,7 +40,9 @@ The console will show any errors in your sketch.
 |------|--------|
 | `assets/images/background.png` | Drawn by Copilot |
 
-
+| File | Source |
+|------|--------|
+| `assets/images/character.png` | Drawn by Copilot |
 ## References
 
 N/A
