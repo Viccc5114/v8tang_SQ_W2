@@ -36,7 +36,10 @@ The console will show any errors in your sketch.
 
 ## Assets
 
-No external assets used. All visuals are generated with p5.js.
+| File | Source |
+|------|--------|
+| `assets/images/background.png` | Drawn by Copilot |
+
 
 ## References
 

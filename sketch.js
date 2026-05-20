@@ -22,6 +22,14 @@ let platforms = [
   { x: 360, y: 320, w: 110, h: 16 }, // centre low platform
   { x: 620, y: 290, w: 130, h: 16 }, // far right platform
 ];
+let bg;
+let playerImg;
+function preload() {
+  bg = loadImage("assets/images/background.png");
+  playerImg = loadImage("assets/images/character.png");
+}
+
+
 
 // ------------------------------------------------------------
 // PLAYER OBJECT — same structure as Example 1
@@ -65,9 +73,9 @@ const PLATFORM_COLOR = [255, 160, 50]; // warm orange
 // ============================================================
 function setup() {
   createCanvas(800, 450);
-
-  // Place player on top of the ground platform (index 0 in the array)
+  console.log(playerImg.width, playerImg.height);
   player.y = platforms[0].y - player.r;
+
 }
 
 // ============================================================
@@ -77,7 +85,11 @@ function setup() {
 // apply physics, resolve collisions, and draw everything.
 // ============================================================
 function draw() {
-  background(10);
+ if (bg) {
+    image(bg, 0, 0, width, height);
+  } else {
+    background(30, 30, 60); // fallback so canvas clears
+  }
 
   handleInput();
   applyPhysics();
@@ -234,34 +246,10 @@ function drawPlatforms() {
 // styles set here don't affect other drawing functions.
 // ------------------------------------------------------------
 function drawPlayer() {
-  push(); // save current drawing settings
-
-  fill(0, 200, 180); // teal
-  noStroke();
-
-  beginShape();
-  let numPoints = 48; // more points = smoother shape
-  for (let i = 0; i < numPoints; i++) {
-    let angle = (TWO_PI / numPoints) * i;
-
-    // noise() returns a smooth random value between 0 and 1.
-    // We use it to push each vertex in or out slightly.
-    let noiseVal = noise(cos(angle) * 0.8 + blobT, sin(angle) * 0.8 + blobT);
-
-    // map() converts noise (0–1) to a radius offset (-7 to +7 pixels)
-    let r = player.r + map(noiseVal, 0, 1, -7, 7);
-
-    // Convert polar coordinates (angle, radius) to x/y
-    vertex(player.x + cos(angle) * r, player.y + sin(angle) * r);
-  }
-  endShape(CLOSE);
-
-  // Draw two simple eyes
-  fill(10);
-  ellipse(player.x - 7, player.y - 5, 7, 7);
-  ellipse(player.x + 7, player.y - 5, 7, 7);
-
-  pop(); // restore drawing settings
+  push();
+  imageMode(CENTER);
+  image(playerImg, player.x, player.y, 40, 40);
+  pop();
 }
 
 // ------------------------------------------------------------
