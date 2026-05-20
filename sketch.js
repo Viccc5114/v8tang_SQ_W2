@@ -1,4 +1,11 @@
+// ============================================================
+// Week 2 Example 2: Platformer with Platforms Array
+// ============================================================
+
+// ------------------------------------------------------------
+// PLATFORMS ARRAY
 // Each platform is an object with x, y, width, and height.
+// x and y are the TOP-LEFT corner (same as rect()).
 //
 // Storing platforms in an array means:
 //   - We can loop through all of them with one for loop
